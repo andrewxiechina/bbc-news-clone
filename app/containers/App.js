@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, ListView } from 'react-native';
-import ItemsList from '../components/ItemsList';
+import { StackNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
+import ItemsList from '../components/ItemsList';
+import StoryPage from '../containers/StoryPage'
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +26,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <ItemsList dataSource={this.state.dataSource} />
+        <ItemsList dataSource={this.state.dataSource} navigation={this.props.navigation}/>
       </View>
     );
   }
@@ -33,5 +35,28 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff'
   },
 });
+
+App.navigationOptions = {
+  title: 'Feed',
+};
+const SimpleStack = StackNavigator({
+  Home: {
+    screen: App,
+  },
+  Detail: {
+    screen: StoryPage,
+  }
+  // Profile: {
+  //   path: 'people/:name',
+  //   screen: MyProfileScreen,
+  // },
+  // Photos: {
+  //   path: 'photos/:name',
+  //   screen: MyPhotosScreen,
+  // },
+});
+
+export default SimpleStack;

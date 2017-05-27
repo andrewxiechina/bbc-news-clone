@@ -8,10 +8,10 @@ export default class ListViewBasics extends React.Component {
   }
   render() {
     return (
-      <View style={{flex: 1, paddingTop: 22}}>
+      <View style={{flex: 1}}>
         <ListView
           dataSource={this.props.dataSource}
-          renderRow={(rowData) => <Item data={rowData}/>}
+          renderRow={(rowData) => <Item data={rowData} navigation={this.props.navigation}/>}
         />
       </View>
     );
